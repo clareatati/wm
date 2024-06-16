@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map with Custom Popup</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+        .custom-popup {
+            font-size: 16px;
+            color: #333;
+        }
+        .custom-popup h3 {
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Map of Eldoret, Kenya</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map and set its view to Eldoret, Kenya
+        var map = L.map('map').setView([0.5143, 35.2698], 13);
+
+        // Add a tile layer to the map (OpenStreetMap tiles)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Add a marker at Eldoret with a custom popup
+        var marker = L.marker([0.5143, 35.2698]).addTo(map);
+
+        // Define custom popup content
+        var popupContent = `
+            <div class="custom-popup">
+                <h3>Eldoret</h3>
+                <p>This is Eldoret, Kenya. It's known for its high-altitude training camps and vibrant agricultural economy.</p>
+            </div>
+        `;
+
+        // Bind the custom popup to the marker
+        marker.bindPopup(popupContent);
+    </script>
+</body>
+</html>
